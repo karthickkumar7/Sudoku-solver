@@ -149,11 +149,11 @@ const SudokuSolver = () => {
 
     return (
         <div className="w-full h-full flex flex-col justify-center items-center bg-gradient-to-r from-teal-600 to-orange-500">
-            <h1 className="absolute top-[40px] md:block text-4xl text-white font-semibold">
+            <h1 className="absolute top-[10px] md:block text-4xl text-white font-semibold">
                 SUDOKU <span className="border-b">SOLVER</span>
             </h1>
             <div className="w-full h-full md:w-[800px] md:h-[800px] flex justify-center items-center">
-                <div className="w-[324px] h-[310px] md:w-[624px] md:h-[623px] flex flex-wrap rounded">
+                <div className="w-[350px] h-[375px] md:w-[628px] md:h-[628px] flex flex-wrap rounded">
                     {board.map((cell, i) => (
                         <div key={i} className="border">
                             <Cell
@@ -167,15 +167,15 @@ const SudokuSolver = () => {
                     ))}
                 </div>
             </div>
-            <div className="flex">
+            <div className="flex mb-4">
                 <button
-                    className="absolute bottom-[20px] md:relative mr-2 px-8 py-3 uppercase text-slate-600 font-semibold bg-yellow-300 rounded"
+                    className="mr-2 px-8 py-3 uppercase text-slate-600 font-semibold bg-yellow-300 rounded"
                     onClick={resetBoardHandler}
                 >
                     reset
                 </button>
                 <button
-                    className="absolute bottom-[20px] md:relative px-8 py-3 uppercase font-semibold bg-green-500 text-white rounded"
+                    className=" md:relative px-8 py-3 uppercase font-semibold bg-green-500 text-white rounded"
                     onClick={solvePuzzle}
                 >
                     solve
