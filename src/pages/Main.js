@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import SudokuSolver from "./SudokuSolver";
-import Intro from "./Intro";
+import { useState, useEffect } from 'react';
+import SudokuSolver from './SudokuSolver';
+import Intro from './Intro';
 
-import "../components/style.css";
+import '../components/style.css';
 
 const Main = () => {
     const [show, setShow] = useState(false);
@@ -14,6 +14,7 @@ const Main = () => {
 
         return () => clearTimeout(showContent);
     }, []);
+
     return (
         <div className="w-screen h-screen bg-gradient-to-r from-teal-600 to-orange-600">
             {show ? <SudokuSolver /> : <Intro />}
