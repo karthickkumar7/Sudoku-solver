@@ -1,103 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cell from '../components/Cell';
 
 import { maps } from '../components/iterationMaps';
 
 const SudokuSolver = () => {
-    const [iter, setIter] = useState([]);
-    const [board, setBoard] = useState([
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-    ]);
-
-    const checkIterablehandler = (pos) => {
-        const res = [];
-        for (let i = 0; i < maps[pos].length; i++) {
-            for (let j = 0; j < maps[pos][i].length; j++) {
-                res.push(maps[pos][i][j]);
-            }
-        }
-        setIter(res);
-    };
+    const [board, setBoard] = useState([]);
 
     const enterVal = (num, i) => {
         const temp = [...board];
@@ -135,47 +42,48 @@ const SudokuSolver = () => {
         setBoard(res);
     };
 
-    // useEffect(() => {
-    //     console.log('ran');
-    //     let count = 0;
-    //     if (count < 8)
-    //     for (let i = 0; i < board.length; i++) {
-    //         if (board[i] === '') {
-    //             solvePuzzle();
-    //             count++;
-    //         }
-    //     }
-    // }, [board]);
+    useEffect(() => {
+        resetBoardHandler();
+    }, []);
 
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center bg-gradient-to-r from-teal-600 to-orange-500">
-            <h1 className="absolute top-[10px] md:block text-4xl text-white font-semibold">
-                SUDOKU <span className="border-b">SOLVER</span>
+        <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-900 relative">
+            <h1 className="absolute top-[80px] md:top-[30px] md:block text-4xl text-white font-semibold">
+                SUDOKU <span className="border-b italic text-gold">SOLVER</span>
+                <span className="text-xs absolute top-12 italic text-slate-500 right-10">
+                    karthick
+                </span>
             </h1>
-            <div className="w-full h-full md:w-[800px] md:h-[800px] flex justify-center items-center">
-                <div className="w-[350px] h-[375px] md:w-[628px] md:h-[628px] flex flex-wrap rounded">
+
+            {/* BOARD */}
+            <div className="w-full h-full md:w-[800px] md:h-[800px] flex justify-center items-center relative">
+                <div className="w-[350px] h-[375px] md:w-[628px] md:h-[628px] flex flex-wrap rounded overflow-hidden">
                     {board.map((cell, i) => (
-                        <div key={i} className="border">
+                        <div key={i} className="border border-slate-500">
                             <Cell
                                 num={cell}
                                 pos={i}
-                                flag={iter.includes(i) ? true : false}
                                 enterVal={enterVal}
                                 onClick={solvePuzzle}
                             />
                         </div>
                     ))}
+
+                    {/* BIGGER CELL */}
+                    <div className="absolute -z-10 w-[210px] h-[210px] top-[85px] left-[84px] border-2 border-slate-200"></div>
                 </div>
             </div>
-            <div className="flex mb-4">
+
+            {/* BUTTONS */}
+            <div className="flex absolute bottom-[100px] md:bottom-[70px]">
                 <button
-                    className="mr-2 px-8 py-3 uppercase text-slate-600 font-semibold bg-yellow-300 rounded"
+                    className="mr-2 px-8 py-3 uppercase font-semibold border border-gold text-gold duration-300 hover:bg-gold/50 hover:border-gold/50 hover:text-yellow-100 rounded"
                     onClick={resetBoardHandler}
                 >
                     reset
                 </button>
                 <button
-                    className=" md:relative px-8 py-3 uppercase font-semibold bg-green-500 text-white rounded"
+                    className="mr-2 px-8 py-3 uppercase font-semibold border border-emerald-600 text-emerald-300 duration-300 hover:bg-emerald-600/50 hover:border-emerald-600/50 hover:text-emerald-100-100 rounded"
                     onClick={solvePuzzle}
                 >
                     solve

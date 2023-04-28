@@ -1,7 +1,7 @@
-import Main from './pages/Main';
+import SudokuSolver from './pages/SudokuSolver';
 
 function App() {
-    return <Main />;
+    return <SudokuSolver />;
 }
 
 export default App;
